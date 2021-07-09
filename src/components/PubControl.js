@@ -48,18 +48,40 @@ class PubControl extends React.Component {
     this.setState({formVisibleOnPage: false});
   }
 
+  handleEditNewKegInMenu = (kegToEdit) => {
+    const { dispatch } = this.props;
+    const { name, brand, price, alcoholContent } = kegToEdit;
+    const action = { 
+      type: 'ADD_BEER',
+      name: name,
+      brand: brand,
+      price: price,
+      alcoholContent: alcoholContent,
+    }
+    dispatch(action);
+    this.setState({
+      editing: false, 
+      selectedKeg: null
+    });
+  }
+
   handleChangeSelectedKeg = (id) => {
     const selectedKeg = this.state.masterKegMenu.filter(keg => keg.id === id)[0];
     this.setState({selectedKeg: selectedKeg})
   }
 
   handleDeleteKeg = (id) => {
-    const newMasterKegMenu = this.state.masterKegMenu.filter(keg => keg.id !== id);
-    this.setState({
-      masterKegMenu: newMasterKegMenu,
-      selectedKeg: null,
-    });
+    const { dispatch } = this.props;
+    const action = {
+      type: 'DELETE_BEER',
+      id: id
+    }
+    dispatch(action);
+    this.setState({selectedTicket: null});
   }
+
+
+  
 
   handleEditKegInMenu = (kegToEdit) => {
     const editedMasterKegMenu = this.state.masterKegMenu
