@@ -11,6 +11,22 @@ describe('menuReducer', () => {
     id: 1
   };
 
+  const currentState = {
+    1: {
+      name: 'Black Butte Porter',
+      brand: 'Deschutes Brewery',
+      price: '$9.50',
+      alcoholContent: '5.5%',
+      id: 1 },
+    2: {
+      name: 'Mirror Pond Pale Ale',
+      brand: 'Deschutes Brewery',
+      price:  '$9.50',
+      alcoholContent: '5.0%',
+      id: 2
+    }
+  }
+
   test('Should return default state if there is no action type passed into the reducer', () => {
     expect(menuReducer({}, { type: null })).toEqual({});
   });
@@ -37,4 +53,22 @@ describe('menuReducer', () => {
     });
   });
 
+  test('Should successfully delete a beer', () => {
+    action = {
+      type: 'DELETE_BEER',
+      id: 1
+    };
+    expect(menuReducer(currentState, action)).toEqual({
+        2: {
+          name: 'Mirror Pond Pale Ale',
+          brand: 'Deschutes Brewery',
+          price:  '$9.50',
+          alcoholContent: '5.0%',
+          id: 2 }
+          
+    });
+  });
+
+
 });
+
