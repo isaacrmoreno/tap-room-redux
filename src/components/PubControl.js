@@ -3,6 +3,7 @@ import NewKegForm from './NewKegForm';
 import Menu from './Menu';
 import KegDetail from './KegDetail';
 import EditKegForm from './EditKegForm';
+import { connect } from 'react-redux';
 
 class PubControl extends React.Component {
 
@@ -10,8 +11,8 @@ class PubControl extends React.Component {
     super(props)
     this.state = {
       formVisibleOnPage: false,
-      masterKegMenu: [],
       selectedKeg: null,
+      editing: false
     };
   }
 
@@ -34,8 +35,17 @@ class PubControl extends React.Component {
   }
 
   handleAddNewKegToMenu = (newKeg) => {
-    const newMasterKegMenu = this.state.masterKegMenu.concat(newKeg);
-    this.setState({masterKegMenu: newMasterKegMenu, formVisibleOnPage: false});
+    const { dispatch } = this.props;
+    const { name, brand, price, alcoholContent } = newKeg;
+    const action = { 
+      type: 'ADD_BEER',
+      name: name,
+      brand: brand,
+      price: price,
+      alcoholContent: alcoholContent,
+    }
+    dispatch(action);
+    this.setState({formVisibleOnPage: false});
   }
 
   handleChangeSelectedKeg = (id) => {
@@ -104,5 +114,7 @@ class PubControl extends React.Component {
     )
   }
 } 
+
+PubControl = connect()(PubControl)
 
 export default PubControl;
