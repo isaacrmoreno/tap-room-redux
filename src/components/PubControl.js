@@ -64,18 +64,6 @@ class PubControl extends React.Component {
     this.setState({selectedKeg: null});
   }
 
-  handleSellPint = (id) => {
-    const selectedKeg = this.state.masterKegMenu.filter(keg => keg.id === id)[0];
-    if (selectedKeg.pints >= 1) {
-      selectedKeg.pints--;
-      this.setState({
-        masterKegMenu: this.state.masterKegMenu,
-        editing: false,
-        selectedKeg: null
-      })
-    }
-  }
-  
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
@@ -93,8 +81,7 @@ class PubControl extends React.Component {
       buttonText = "Return to Menu";
     } else {
       currentlyVisibleState = <Menu menu={this.props.masterKegMenu}
-      onKegSelection={this.handleChangeSelectedKeg}
-      onClickSellPint={this.handleSellPint}/>
+      onKegSelection={this.handleChangeSelectedKeg}/>
       buttonText = "Add Keg";
     }
 
@@ -109,13 +96,13 @@ class PubControl extends React.Component {
 
 PubControl.propTypes = {
   masterKegMenu: PropTypes.object,
-  formVisibleOnPage: PropTypes.bool
+  formVisibleOnPage: PropTypes.bool,
 }
 
 const mapStateToProps = state => {
   return {
     masterKegMenu: state.masterKegMenu,
-    formVisibleOnPage: state.formVisibleOnPage
+    formVisibleOnPage: state.formVisibleOnPage,
   }
 }
 

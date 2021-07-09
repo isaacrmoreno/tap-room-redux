@@ -8,16 +8,15 @@ function Menu(props) {
       <hr/>
       {Object.values(props.menu).map((keg) =>
       <Keg
-      whenKegClicked = {props.onKegSelection}
-      onClickSellPint={props.onClickSellPint}
-      name={keg.name}
-      brand={keg.brand}
-      price={keg.price}
-      alcoholContent={keg.alcoholContent}
-      pints={keg.pints}
-      id={keg.id}
-      key={keg.id}
-      />
+        whenKegClicked = {props.onKegSelection}
+        name={keg.name}
+        brand={keg.brand}
+        price={keg.price}
+        alcoholContent={keg.alcoholContent}
+        pints={keg.pints}
+        id={keg.id}
+        key={keg.id}
+        />
       )}
     </React.Fragment>
   );
