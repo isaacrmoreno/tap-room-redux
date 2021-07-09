@@ -1,13 +1,13 @@
 <h1 align="center">
-🍻 Tap Room Le Royal 👑</h1>
+🍻 Tap Room Le Royal - Redux Edition 👑</h1>
 
 ### By Isaac Moreno 👨‍💻
 
-Click [here](https://github.com/isaacrmoreno/tap-room) to view project.
+Click [here](https://github.com/isaacrmoreno/tap-room-redux) to view project.
 
 # Description
 
-React site to practice adding CRUD functionality with state
+React site to practice adding Redux functionality.
 
 # Prerequisites 🖥️
 
@@ -16,11 +16,11 @@ React site to practice adding CRUD functionality with state
 
 # Setup/Installation Instructions 📁
 
-1. Clone the repository: `% git clone https://github.com/isaacrmoreno/tap-room`
-2. Navigate to the `tap-room` directory on your computer
+1. Clone the repository: `% git clone https://github.com/isaacrmoreno/tap-room-redux`
+2. Navigate to the `tap-room-redux` directory on your computer
 3. Open with your preferred text editor to view code
 4. To start a development server and view project in the browser:
-   - Navigate to `tap-room` in your command line
+   - Navigate to `tap-room-redux` in your command line
    - Run command `npm install` to install dependencies
    - Optional: Run command `npm run build` to bundle files
    - Finally, run the command `npm run start` to start a development server
