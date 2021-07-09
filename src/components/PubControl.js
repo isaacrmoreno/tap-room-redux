@@ -4,13 +4,13 @@ import Menu from './Menu';
 import KegDetail from './KegDetail';
 import EditKegForm from './EditKegForm';
 import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 
 class PubControl extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      formVisibleOnPage: false,
       selectedKeg: null,
       editing: false
     };
@@ -19,14 +19,15 @@ class PubControl extends React.Component {
   handleClick = () => {
     if (this.state.selectedKeg != null) {
       this.setState({
-        formVisibleOnPage: false,
         selectedKeg: null,
         editing: false
       });
     } else {
-      this.setState(prevState => ({
-        formVisibleOnPage: !prevState.formVisibleOnPage
-      }));
+      const { dispatch } = this.props;
+      const action = {
+        type: 'TOGGLE_FORM'
+      }
+      dispatch(action);
     }
   }
 
@@ -36,23 +37,28 @@ class PubControl extends React.Component {
 
   handleAddNewKegToMenu = (newKeg) => {
     const { dispatch } = this.props;
-    const { name, brand, price, alcoholContent } = newKeg;
+    const { id, name, brand, price, alcoholContent } = newKeg;
     const action = { 
       type: 'ADD_BEER',
+      id: id,
       name: name,
       brand: brand,
       price: price,
       alcoholContent: alcoholContent,
     }
     dispatch(action);
-    this.setState({formVisibleOnPage: false});
+    const action2 = {
+      type: 'TOGGLE_FORM'
+    }
+    dispatch(action2);
   }
 
   handleEditKegInMenu = (kegToEdit) => {
     const { dispatch } = this.props;
-    const { name, brand, price, alcoholContent } = kegToEdit;
+    const { id, name, brand, price, alcoholContent } = kegToEdit;
     const action = { 
       type: 'ADD_BEER',
+      id: id,
       name: name,
       brand: brand,
       price: price,
@@ -77,7 +83,7 @@ class PubControl extends React.Component {
       id: id
     }
     dispatch(action);
-    this.setState({selectedTicket: null});
+    this.setState({selectedKeg: null});
   }
 
   handleSellPint = (id) => {
@@ -104,7 +110,7 @@ class PubControl extends React.Component {
       onClickDelete = {this.handleDeleteKeg} 
       onClickEdit = {this.handleEditClick}/>
       buttonText = "Return to Menu";
-    } else if (this.state.formVisibleOnPage) {
+    } else if (this.props.formVisibleOnPage) {
       currentlyVisibleState = <NewKegForm onNewKegCreation={this.handleAddNewKegToMenu}/>
       buttonText = "Return to Menu";
     } else {
@@ -123,9 +129,15 @@ class PubControl extends React.Component {
   }
 } 
 
+PubControl.propTypes = {
+  masterKegMenu: PropTypes.object,
+  formVisibleOnPage: PropTypes.bool
+}
+
 const mapStateToProps = state => {
   return {
-    masterKegMenu: state
+    masterKegMenu: state.masterKegMenu,
+    formVisibleOnPage: state.formVisibleOnPage
   }
 }
 
