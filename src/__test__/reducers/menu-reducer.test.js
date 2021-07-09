@@ -1,4 +1,5 @@
 import menuReducer from '../../reducers/menu-reducer';
+import * as c from './../../actions/ActionTypes';
 
 describe('menuReducer', () => {
 
@@ -34,7 +35,7 @@ describe('menuReducer', () => {
   test('Should successfully add new beer data to masterKegMenu', () => {
     const { name, brand, price, alcoholContent, id } = menuData;
     action = {
-      type: 'ADD_BEER',
+      type: c.ADD_BEER,
       name: name,
       brand: brand,
       price: price,
@@ -55,7 +56,7 @@ describe('menuReducer', () => {
 
   test('Should successfully delete a beer', () => {
     action = {
-      type: 'DELETE_BEER',
+      type: c.DELETE_BEER,
       id: 1
     };
     expect(menuReducer(currentState, action)).toEqual({
