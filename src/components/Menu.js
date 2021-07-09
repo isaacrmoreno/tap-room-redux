@@ -6,7 +6,7 @@ function Menu(props) {
   return (
     <React.Fragment>
       <hr/>
-      {props.menu.map((keg) =>
+      {Object.values(props.menu).map((keg) =>
       <Keg
       whenKegClicked = {props.onKegSelection}
       onClickSellPint={props.onClickSellPint}
@@ -24,7 +24,7 @@ function Menu(props) {
 } 
 
 Menu.propTypes = {
-  menu: PropTypes.array,
+  menu: PropTypes.object,
   onKegSelection: PropTypes.func,
   onClickSellPint: PropTypes.func
 };
