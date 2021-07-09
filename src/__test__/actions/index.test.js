@@ -15,4 +15,20 @@ describe('Tap Room Le Royal actions', () => {
     });
   });
 
+  it('addBeer should create ADD_BEER action', () => {
+    expect(actions.addBeer({
+      name: 'Black Butte Porter',
+      brand: 'Deschutes Brewery',
+      price: '$9.50',
+      alcoholContent: '5.5%',
+      id: 1
+    })).toEqual({
+      type: 'ADD_BEER',
+      name: 'Black Butte Porter',
+      brand: 'Deschutes Brewery',
+      price: '$9.50',
+      alcoholContent: '5.5%',
+      id: 1
+    });
+  });
 });
