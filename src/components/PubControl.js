@@ -48,7 +48,7 @@ class PubControl extends React.Component {
     this.setState({formVisibleOnPage: false});
   }
 
-  handleEditNewKegInMenu = (kegToEdit) => {
+  handleEditKegInMenu = (kegToEdit) => {
     const { dispatch } = this.props;
     const { name, brand, price, alcoholContent } = kegToEdit;
     const action = { 
@@ -78,20 +78,6 @@ class PubControl extends React.Component {
     }
     dispatch(action);
     this.setState({selectedTicket: null});
-  }
-
-
-  
-
-  handleEditKegInMenu = (kegToEdit) => {
-    const editedMasterKegMenu = this.state.masterKegMenu
-    .filter(keg => keg.id !== this.state.selectedKeg.id)
-    .concat(kegToEdit);
-    this.setState({
-      masterKegMenu: editedMasterKegMenu,
-      editing: false,
-      selectedKeg: null
-    })
   }
 
   handleSellPint = (id) => {
@@ -137,6 +123,12 @@ class PubControl extends React.Component {
   }
 } 
 
-PubControl = connect()(PubControl)
+const mapStateToProps = state => {
+  return {
+    masterKegMenu: state
+  }
+}
+
+PubControl = connect(mapStateToProps)(PubControl)
 
 export default PubControl;
