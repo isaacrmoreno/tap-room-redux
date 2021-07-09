@@ -17,6 +17,12 @@ describe('Tap Room Le Royal actions', () => {
     });
   });
 
+  it('selectKeg should create SELECT_KEG action', () => {
+    expect(actions.selectedKeg()).toEqual({
+      type: c.SELECT_KEG
+    });
+  });
+
   it('addBeer should create ADD_BEER action', () => {
     expect(actions.addBeer({
       name: 'Black Butte Porter',

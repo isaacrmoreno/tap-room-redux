@@ -9,6 +9,10 @@ export const toggleForm = () => ({
   type: c.TOGGLE_FORM
 });
 
+export const selectedKeg = () => ({
+  type: c.SELECT_KEG
+})
+
 export const addBeer = (beer) => {
   const { name, brand, price, alcoholContent, id } = beer;
   return {

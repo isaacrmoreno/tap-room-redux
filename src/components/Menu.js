@@ -25,7 +25,6 @@ function Menu(props) {
 Menu.propTypes = {
   menu: PropTypes.object,
   onKegSelection: PropTypes.func,
-  onClickSellPint: PropTypes.func
 };
 
 export default Menu;

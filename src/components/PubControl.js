@@ -13,7 +13,7 @@ class PubControl extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedKeg: null,
+      // selectedKeg: null,
       editing: false
     };
   }
@@ -21,7 +21,6 @@ class PubControl extends React.Component {
   handleClick = () => {
     if (this.state.selectedKeg != null) {
       this.setState({
-        selectedKeg: null,
         editing: false
       });
     } else {
@@ -41,6 +40,7 @@ class PubControl extends React.Component {
     dispatch(action);
     const action2 = a.toggleForm()
     dispatch(action2);
+
   }
 
   handleEditKegInMenu = (kegToEdit) => {
@@ -49,20 +49,28 @@ class PubControl extends React.Component {
     dispatch(action);
     this.setState({
       editing: false, 
-      selectedKeg: null
     });
   }
 
-  handleChangeSelectedKeg = (id) => {
-    const selectedKeg = this.props.masterKegMenu[id];
-    this.setState({selectedKeg: selectedKeg})
-  }
+  //-----------------------------------------/
+  // ORIGINAL FUNCTION
+  // handleChangeSelectedKeg = (id) => {
+  //   const selectedKeg = this.props.masterKegMenu[id];
+  //   this.setState({selectedKeg: selectedKeg})
+  // }
+
+  // handleChangeSelectedKeg = (id) => {
+  //   const { dispatch } = this.props;
+  //   const action = a.selectedKeg(id)
+  //   dispatch(action);
+  // }
+
+//-----------------------------------------/
 
   handleDeleteKeg = (id) => {
     const { dispatch } = this.props;
     const action = a.deleteBeer(id)
     dispatch(action);
-    this.setState({selectedKeg: null});
   }
 
   render() {
@@ -72,8 +80,8 @@ class PubControl extends React.Component {
       if (this.state.editing) {
       currentlyVisibleState = <EditKegForm keg = {this.state.selectedKeg} onEditKeg = {this.handleEditKegInMenu}/>
       buttonText = "Return to Menu";
-    } else if (this.state.selectedKeg != null) {
-      currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} 
+    } else if (this.state.selectedKeg != null) { // likely will have to change these to props
+      currentlyVisibleState = <KegDetail keg = {this.props.selectedKeg}
       onClickDelete = {this.handleDeleteKeg} 
       onClickEdit = {this.handleEditClick}/>
       buttonText = "Return to Menu";
@@ -98,12 +106,14 @@ class PubControl extends React.Component {
 PubControl.propTypes = {
   masterKegMenu: PropTypes.object,
   formVisibleOnPage: PropTypes.bool,
+  selectedKeg: PropTypes.bool
 }
 
 const mapStateToProps = state => {
   return {
     masterKegMenu: state.masterKegMenu,
     formVisibleOnPage: state.formVisibleOnPage,
+    selectedKeg: state.selectedKeg // might be formVisibleOnPage
   }
 }
 
