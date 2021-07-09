@@ -6,6 +6,7 @@ import EditKegForm from './EditKegForm';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import * as a from './../actions';
+import Button from 'react-bootstrap/Button';
 
 class PubControl extends React.Component {
 
@@ -88,7 +89,7 @@ class PubControl extends React.Component {
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button>
+        <Button variant="primary" size="lg" onClick={this.handleClick}>{buttonText}</Button>
       </React.Fragment>
     )
   }
