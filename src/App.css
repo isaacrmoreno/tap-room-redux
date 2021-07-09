@@ -1,3 +1,7 @@
 .header-copy {
   text-align: center;
 }
+
+.container {
+  justify-content: center;
+}
