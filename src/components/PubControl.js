@@ -66,7 +66,7 @@ class PubControl extends React.Component {
   }
 
   handleChangeSelectedKeg = (id) => {
-    const selectedKeg = this.state.masterKegMenu.filter(keg => keg.id === id)[0];
+    const selectedKeg = this.props.masterKegMenu[id];
     this.setState({selectedKeg: selectedKeg})
   }
 
@@ -108,7 +108,7 @@ class PubControl extends React.Component {
       currentlyVisibleState = <NewKegForm onNewKegCreation={this.handleAddNewKegToMenu}/>
       buttonText = "Return to Menu";
     } else {
-      currentlyVisibleState = <Menu menu={this.state.masterKegMenu}
+      currentlyVisibleState = <Menu menu={this.props.masterKegMenu}
       onKegSelection={this.handleChangeSelectedKeg}
       onClickSellPint={this.handleSellPint}/>
       buttonText = "Add Keg";
