@@ -65,7 +65,6 @@ describe('menuReducer', () => {
           price:  '$9.50',
           alcoholContent: '5.0%',
           id: 2 }
-          
     });
   });
 
